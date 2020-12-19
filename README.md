@@ -7,6 +7,6 @@ http://karlsims.com/rd.html
 
 Examples:
 
-![](/Examples/nice.png)
+![](/examples/nice.png)
 
-![](/Examples/big.png)
+![](/examples/big.png)
