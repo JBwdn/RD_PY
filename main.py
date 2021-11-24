@@ -1,3 +1,17 @@
+"""
+Reaction diffusion visualisation
+    Jake Bowden - 2021
+
+Usage: "python main.py -m p" to preview the animation.
+       "python main.py -m s" to save the animation to a gif
+
+Dependencies:
+    - numpy
+    - scipy
+    - matplotlib
+"""
+
+
 from typing import Tuple
 import math
 import argparse
@@ -10,25 +24,11 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 
-"""
-Reaction diffusion visualisation 
-    Jake Bowden - 2021
-
-Usage: "python main.py -m p" to preview the animation.
-       "python main.py -m s" to save the animation to a gif
-
-Dependencies: 
-    - numpy
-    - scipy
-    - matplotlib
-"""
-
-
 # Parameters:
-SIZE = 150
-FPS = 20
-LENGTH = 500
-FILE_NAME = "example_rd.gif"
+SIZE = 400
+FPS = 15
+LENGTH = 20
+FILE_NAME = "wallpaper.gif"
 
 # Kernel for applying the Laplace transform:
 LP_KERNEL = np.array([[0.05, 0.2, 0.05], [0.2, -1, 0.2], [0.05, 0.2, 0.05]])
@@ -194,16 +194,16 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Set up simulator:
-    gs = GreyScottSimulator(SIZE, SIZE)
-    gs.seed(n_seeds=1, diameter=10)
+    gs = GreyScottSimulator(1080,1920)
+    gs.seed(n_seeds=30, diameter=10)
 
     # Modulation functions:
     dfA = lambda i: math.sin((i * 500) / 13) / 1000
     dkB = lambda i: math.cos((i * 500) / 15) / 1000
-    gs.set_mod(dfA, dkB)
+    #gs.set_mod(dfA, dkB)
 
     # Set up animation:
-    anim = gs.animate(framerate=FPS, length=LENGTH, step_size=50)
+    anim = gs.animate(framerate=FPS, length=LENGTH, step_size=30)
 
     # Preview or save mode:
     if args.m == "p":
